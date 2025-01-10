@@ -44,7 +44,11 @@ package scheme
 import (
 EOF
 
+(
   find "${ROOT_DIR}/vendor/k8s.io/api" | grep register.go | sed "s#${ROOT_DIR}/vendor/##g" | sed "s#/register.go##g" | awk -F '/' '{print "	"$3$4, "\""$1"\/"$2"\/"$3"\/"$4"\""}' | sort
+
+  find "${ROOT_DIR}/vendor/github.com/openshift/api" | grep -v legacyconfig | grep register.go | sed "s#${ROOT_DIR}/vendor/##g" | sed "s#/register.go##g" | awk -F '/' '{print "	ocp"$4$5, "\""$1"\/"$2"\/"$3"\/"$4"\/"$5"\""}' | sort
+) | sort -u
 
   cat <<EOF
 	"k8s.io/apimachinery/pkg/runtime"
@@ -54,8 +58,11 @@ EOF
 func AddToScheme(scheme *runtime.Scheme) {
 EOF
 
+(
   find "${ROOT_DIR}/vendor/k8s.io/api" | grep register.go | sed "s#${ROOT_DIR}/vendor/##g" | sed "s#/register.go##g" | awk -F '/' '{print "	_ = " $3$4"\.AddToScheme(scheme)"}' | sort
 
+  find "${ROOT_DIR}/vendor/github.com/openshift/api" | grep -v legacyconfig | grep register.go | sed "s#${ROOT_DIR}/vendor/##g" | sed "s#/register.go##g" | awk -F '/' '{print "	_ = ocp" $4$5"\.AddToScheme(scheme)"}' | sort
+) | sort -u
   cat <<EOF
 }
 EOF

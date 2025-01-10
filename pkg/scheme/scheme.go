@@ -21,6 +21,8 @@ import (
 	admissionregistrationv1 "k8s.io/api/admissionregistration/v1"
 	admissionregistrationv1alpha1 "k8s.io/api/admissionregistration/v1alpha1"
 	admissionregistrationv1beta1 "k8s.io/api/admissionregistration/v1beta1"
+	admissionv1 "k8s.io/api/admission/v1"
+	admissionv1beta1 "k8s.io/api/admission/v1beta1"
 	apiserverinternalv1alpha1 "k8s.io/api/apiserverinternal/v1alpha1"
 	appsv1 "k8s.io/api/apps/v1"
 	appsv1beta1 "k8s.io/api/apps/v1beta1"
@@ -52,12 +54,49 @@ import (
 	flowcontrolv1beta1 "k8s.io/api/flowcontrol/v1beta1"
 	flowcontrolv1beta2 "k8s.io/api/flowcontrol/v1beta2"
 	flowcontrolv1beta3 "k8s.io/api/flowcontrol/v1beta3"
+	imagepolicyv1alpha1 "k8s.io/api/imagepolicy/v1alpha1"
 	networkingv1 "k8s.io/api/networking/v1"
 	networkingv1alpha1 "k8s.io/api/networking/v1alpha1"
 	networkingv1beta1 "k8s.io/api/networking/v1beta1"
 	nodev1 "k8s.io/api/node/v1"
 	nodev1alpha1 "k8s.io/api/node/v1alpha1"
 	nodev1beta1 "k8s.io/api/node/v1beta1"
+	ocpapiserverv1 "github.com/openshift/api/apiserver/v1"
+	ocpappsv1 "github.com/openshift/api/apps/v1"
+	ocpauthorizationv1 "github.com/openshift/api/authorization/v1"
+	ocpbuildv1 "github.com/openshift/api/build/v1"
+	ocpcloudnetworkv1 "github.com/openshift/api/cloudnetwork/v1"
+	ocpconfigv1 "github.com/openshift/api/config/v1"
+	ocpconfigv1alpha1 "github.com/openshift/api/config/v1alpha1"
+	ocpconsolev1 "github.com/openshift/api/console/v1"
+	ocphelmv1beta1 "github.com/openshift/api/helm/v1beta1"
+	ocpimagedocker10 "github.com/openshift/api/image/docker10"
+	ocpimagedockerpre012 "github.com/openshift/api/image/dockerpre012"
+	ocpimageregistryv1 "github.com/openshift/api/imageregistry/v1"
+	ocpimagev1 "github.com/openshift/api/image/v1"
+	ocpkubecontrolplanev1 "github.com/openshift/api/kubecontrolplane/v1"
+	ocpmachinev1 "github.com/openshift/api/machine/v1"
+//	ocpmachinev1alpha1 "github.com/openshift/api/machine/v1alpha1"
+	ocpmachinev1beta1 "github.com/openshift/api/machine/v1beta1"
+	ocpmonitoringv1 "github.com/openshift/api/monitoring/v1"
+//cpnetworkoperatorv1 "github.com/openshift/api/networkoperator/v1"
+	ocpnetworkv1 "github.com/openshift/api/network/v1"
+	ocpnetworkv1alpha1 "github.com/openshift/api/network/v1alpha1"
+	ocpoauthv1 "github.com/openshift/api/oauth/v1"
+//cpopenshiftcontrolplanev1 "github.com/openshift/api/openshiftcontrolplane/v1"
+//cpoperatorcontrolplanev1alpha1 "github.com/openshift/api/operatorcontrolplane/v1alpha1"
+	ocpoperatorv1 "github.com/openshift/api/operator/v1"
+	ocpoperatorv1alpha1 "github.com/openshift/api/operator/v1alpha1"
+	ocposinv1 "github.com/openshift/api/osin/v1"
+	ocpprojectv1 "github.com/openshift/api/project/v1"
+	ocpquotav1 "github.com/openshift/api/quota/v1"
+	ocproutev1 "github.com/openshift/api/route/v1"
+	ocpsamplesv1 "github.com/openshift/api/samples/v1"
+	ocpsecurityv1 "github.com/openshift/api/security/v1"
+	ocpservicecertsignerv1alpha1 "github.com/openshift/api/servicecertsigner/v1alpha1"
+	ocpsharedresourcev1alpha1 "github.com/openshift/api/sharedresource/v1alpha1"
+	ocptemplatev1 "github.com/openshift/api/template/v1"
+	ocpuserv1 "github.com/openshift/api/user/v1"
 	policyv1 "k8s.io/api/policy/v1"
 	policyv1beta1 "k8s.io/api/policy/v1beta1"
 	rbacv1 "k8s.io/api/rbac/v1"
@@ -67,10 +106,10 @@ import (
 	schedulingv1 "k8s.io/api/scheduling/v1"
 	schedulingv1alpha1 "k8s.io/api/scheduling/v1alpha1"
 	schedulingv1beta1 "k8s.io/api/scheduling/v1beta1"
+	storagemigrationv1alpha1 "k8s.io/api/storagemigration/v1alpha1"
 	storagev1 "k8s.io/api/storage/v1"
 	storagev1alpha1 "k8s.io/api/storage/v1alpha1"
 	storagev1beta1 "k8s.io/api/storage/v1beta1"
-	storagemigrationv1alpha1 "k8s.io/api/storagemigration/v1alpha1"
 	"k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -79,6 +118,8 @@ func AddToScheme(scheme *runtime.Scheme) {
 	_ = admissionregistrationv1.AddToScheme(scheme)
 	_ = admissionregistrationv1alpha1.AddToScheme(scheme)
 	_ = admissionregistrationv1beta1.AddToScheme(scheme)
+	_ = admissionv1.AddToScheme(scheme)
+	_ = admissionv1beta1.AddToScheme(scheme)
 	_ = apiserverinternalv1alpha1.AddToScheme(scheme)
 	_ = appsv1.AddToScheme(scheme)
 	_ = appsv1beta1.AddToScheme(scheme)
@@ -110,12 +151,49 @@ func AddToScheme(scheme *runtime.Scheme) {
 	_ = flowcontrolv1beta1.AddToScheme(scheme)
 	_ = flowcontrolv1beta2.AddToScheme(scheme)
 	_ = flowcontrolv1beta3.AddToScheme(scheme)
+	_ = imagepolicyv1alpha1.AddToScheme(scheme)
 	_ = networkingv1.AddToScheme(scheme)
 	_ = networkingv1alpha1.AddToScheme(scheme)
 	_ = networkingv1beta1.AddToScheme(scheme)
 	_ = nodev1.AddToScheme(scheme)
 	_ = nodev1alpha1.AddToScheme(scheme)
 	_ = nodev1beta1.AddToScheme(scheme)
+	_ = ocpapiserverv1.AddToScheme(scheme)
+	_ = ocpappsv1.AddToScheme(scheme)
+	_ = ocpauthorizationv1.AddToScheme(scheme)
+	_ = ocpbuildv1.AddToScheme(scheme)
+	_ = ocpcloudnetworkv1.AddToScheme(scheme)
+	_ = ocpconfigv1.AddToScheme(scheme)
+	_ = ocpconfigv1alpha1.AddToScheme(scheme)
+	_ = ocpconsolev1.AddToScheme(scheme)
+	_ = ocphelmv1beta1.AddToScheme(scheme)
+	_ = ocpimagedocker10.AddToScheme(scheme)
+	_ = ocpimagedockerpre012.AddToScheme(scheme)
+	_ = ocpimageregistryv1.AddToScheme(scheme)
+	_ = ocpimagev1.AddToScheme(scheme)
+	_ = ocpkubecontrolplanev1.AddToScheme(scheme)
+	_ = ocpmachinev1.AddToScheme(scheme)
+//_ = ocpmachinev1alpha1.AddToScheme(scheme)
+	_ = ocpmachinev1beta1.AddToScheme(scheme)
+	_ = ocpmonitoringv1.AddToScheme(scheme)
+// = ocpnetworkoperatorv1.AddToScheme(scheme)
+	_ = ocpnetworkv1.AddToScheme(scheme)
+	_ = ocpnetworkv1alpha1.AddToScheme(scheme)
+	_ = ocpoauthv1.AddToScheme(scheme)
+// = ocpopenshiftcontrolpocpopenshiftcontrolplcpnetworkoperatorv1anev1lcpnetworkoperatorv1anev1.AddToScheme(scheme)
+// = ocpoperatorcontrolplanev1alpha1.AddToScheme(scheme)
+	_ = ocpoperatorv1.AddToScheme(scheme)
+	_ = ocpoperatorv1alpha1.AddToScheme(scheme)
+	_ = ocposinv1.AddToScheme(scheme)
+	_ = ocpprojectv1.AddToScheme(scheme)
+	_ = ocpquotav1.AddToScheme(scheme)
+	_ = ocproutev1.AddToScheme(scheme)
+	_ = ocpsamplesv1.AddToScheme(scheme)
+	_ = ocpsecurityv1.AddToScheme(scheme)
+	_ = ocpservicecertsignerv1alpha1.AddToScheme(scheme)
+	_ = ocpsharedresourcev1alpha1.AddToScheme(scheme)
+	_ = ocptemplatev1.AddToScheme(scheme)
+	_ = ocpuserv1.AddToScheme(scheme)
 	_ = policyv1.AddToScheme(scheme)
 	_ = policyv1beta1.AddToScheme(scheme)
 	_ = rbacv1.AddToScheme(scheme)
