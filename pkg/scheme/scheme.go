@@ -79,12 +79,12 @@ import (
 //	ocpmachinev1alpha1 "github.com/openshift/api/machine/v1alpha1"
 	ocpmachinev1beta1 "github.com/openshift/api/machine/v1beta1"
 	ocpmonitoringv1 "github.com/openshift/api/monitoring/v1"
-//cpnetworkoperatorv1 "github.com/openshift/api/networkoperator/v1"
+//	ocpnetworkoperatorv1 "github.com/openshift/api/networkoperator/v1"
 	ocpnetworkv1 "github.com/openshift/api/network/v1"
 	ocpnetworkv1alpha1 "github.com/openshift/api/network/v1alpha1"
 	ocpoauthv1 "github.com/openshift/api/oauth/v1"
-//cpopenshiftcontrolplanev1 "github.com/openshift/api/openshiftcontrolplane/v1"
-//cpoperatorcontrolplanev1alpha1 "github.com/openshift/api/operatorcontrolplane/v1alpha1"
+//	ocpopenshiftcontrolplanev1 "github.com/openshift/api/openshiftcontrolplane/v1"
+//	ocpoperatorcontrolplanev1alpha1 "github.com/openshift/api/operatorcontrolplane/v1alpha1"
 	ocpoperatorv1 "github.com/openshift/api/operator/v1"
 	ocpoperatorv1alpha1 "github.com/openshift/api/operator/v1alpha1"
 	ocposinv1 "github.com/openshift/api/osin/v1"
@@ -173,15 +173,15 @@ func AddToScheme(scheme *runtime.Scheme) {
 	_ = ocpimagev1.AddToScheme(scheme)
 	_ = ocpkubecontrolplanev1.AddToScheme(scheme)
 	_ = ocpmachinev1.AddToScheme(scheme)
-//_ = ocpmachinev1alpha1.AddToScheme(scheme)
+//	_ = ocpmachinev1alpha1.AddToScheme(scheme)
 	_ = ocpmachinev1beta1.AddToScheme(scheme)
 	_ = ocpmonitoringv1.AddToScheme(scheme)
-// = ocpnetworkoperatorv1.AddToScheme(scheme)
+//	_ = ocpnetworkoperatorv1.AddToScheme(scheme)
 	_ = ocpnetworkv1.AddToScheme(scheme)
 	_ = ocpnetworkv1alpha1.AddToScheme(scheme)
 	_ = ocpoauthv1.AddToScheme(scheme)
-// = ocpopenshiftcontrolpocpopenshiftcontrolplcpnetworkoperatorv1anev1lcpnetworkoperatorv1anev1.AddToScheme(scheme)
-// = ocpoperatorcontrolplanev1alpha1.AddToScheme(scheme)
+//	_ = ocpopenshiftcontrolplanev1.AddToScheme(scheme)
+//	_ = ocpoperatorcontrolplanev1alpha1.AddToScheme(scheme)
 	_ = ocpoperatorv1.AddToScheme(scheme)
 	_ = ocpoperatorv1alpha1.AddToScheme(scheme)
 	_ = ocposinv1.AddToScheme(scheme)
